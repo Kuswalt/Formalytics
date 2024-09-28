@@ -1,0 +1,75 @@
+
+<div class="container p-4">
+    <div class="row justify-content-center">
+        <div style="background-color: rgba(240, 248, 255, 0.49);" class="card col-md-8">
+            <div style="background-color: rgba(255, 174, 0, 0.682);" class="card-header">
+                <h2 class="text">Register new account</h2>
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="createUser()" #registerForm="ngForm">
+
+                    <!-- -------------------------------------------------------------------------- -->
+                    <div class="form-group mt-3">
+                        <label style="color: rgba(244, 134, 38, 0.764);" for="name" class="text">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            placeholder="Enter name" [(ngModel)]="nUser.name" required #name="ngModel">
+                        <div *ngIf="name.invalid && name.touched" class="text-danger">
+                            Name is required.
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label style="color: rgba(244, 134, 38, 0.764);" for="email" class="text">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="Enter email" [(ngModel)]="nUser.email" required #email="ngModel">
+                        <div *ngIf="email.invalid && email.touched" class="text-danger">
+                            Email is required.
+                        </div>
+                    </div> 
+                    <!-- -------------------------------------------------------------------------- -->
+                    <div class="form-group">
+                        <label style="color: rgba(244, 134, 38, 0.764);" for="username" class="text">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username"
+                            placeholder="Enter username" [(ngModel)]="nUser.username" required #username="ngModel">
+                        <div *ngIf="username.invalid && username.touched" class="text-danger">
+                            Username is required.
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label style="color: rgba(244, 134, 38, 0.785);" for="password" class="text">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Enter password" [(ngModel)]="nUser.password" required #password="ngModel">
+                        <div *ngIf="password.invalid && password.touched" class="text-danger">
+                            Password is required.
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label style="color: rgb(244, 134, 38);" for="confirmPassword" class="text">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm password" [(ngModel)]="confirmPassword" required
+                            #confirmPasswordInput="ngModel">
+                        <div *ngIf="confirmPasswordInput.invalid && confirmPasswordInput.touched" class="text-danger">
+                            Confirm Password is required.
+                        </div>
+                        <div *ngIf="password.value !== confirmPassword" class="text-danger">
+                            Passwords do not match.
+                        </div>
+                    </div>
+
+                    <!-- -------------------------------------------------------------------------- -->
+                   
+                    <!-- -------------------------------------------------------------------------- -->
+
+                    <div class="div-buttons">
+                        <button type="submit" class="btn button-option btn-left"
+                            [disabled]="registerForm.invalid || password.value !== confirmPassword">Register</button>
+                        <button type="button" class="btn button-option" routerLinkActive="active"
+                            routerLink="/">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="container" style="padding-top: 9rem;" *ngIf="student">
+  <h2>Edit Student</h2>
+  <p>Student ID: {{ studentId }}</p>
+  <form (ngSubmit)="updateStudent()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" [(ngModel)]="student.name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="student.email" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="contact_Num">Contact Number</label>
+      <input type="text" id="contact_Num" [(ngModel)]="student.contact_Num" name="contact_Num" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="program">Program</label>
+      <input type="text" id="program" [(ngModel)]="student.program" name="program" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="work_Status">Work Status</label>
+      <input type="text" id="work_Status" [(ngModel)]="student.work_Status" name="work_Status" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="occupation">Occupation</label>
+      <input type="text" id="occupation" [(ngModel)]="student.occupation" name="occupation" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="batchYr">Batch Year</label>
+      <input type="text" id="batchYr" [(ngModel)]="student.batchYr" name="batchYr" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" [(ngModel)]="student.address" name="address" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+.container{
+    margin-top: auto;
+}
+.row {
+    margin-top: 1cm;
+}
+
+
+.div-buttons{
+    margin-top: 1cm;
+    text-align: right;
+    border: none;
+}
+
+
+.btn {
+    background-color: #E57C23; /* Orange with transparency */
+}
+
+
+.btn-left{
+    margin-right: 0.5cm;
+}
+
+
+.card-header{
+    background-color: transparent !important;
+    padding-top: 15px;
+    padding-left: -10px;
+    justify-content: start;
+    color:#e15919 ;
+}
+
+
+.btn.button-option {
+    border: none; /* Remove border */
+    cursor: pointer;
+    padding: 8px 16px; /* Adjust padding as needed */
+    border-radius: 4px; /* Add border-radius for rounded corners */
+}
+
+
+.btn.button-option.btn-left {
+    background-color: #E57C23; /* Orange background for Register */
+    color: white; /* White text color */
+}
+
+
+.btn.button-option {
+    background-color: transparent; /* Transparent background for Cancel */
+    color: red; /* Red text color */
+}

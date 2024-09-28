@@ -1,0 +1,225 @@
+.container,
+.card {
+    background-color: rgba(255, 255, 255, 0);
+}
+.card-body1{
+    background: linear-gradient(to right, rgba(240, 158, 36, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: 20px;
+}
+.card-body2{
+    background: linear-gradient(to left, rgba(240, 158, 36, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: 20px;
+}
+.card-body3{
+    background: linear-gradient(to right, rgba(240, 158, 36, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: 20px;
+}
+.card{
+    border: none;
+}
+
+.fst-img {
+    width: 90%;
+}
+
+.div-border{
+    border: 1px solid grey;
+}
+
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  #hero::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 130%;
+    height: 95%;
+    background: linear-gradient(to right, rgba(240, 158, 36, 0.8), rgba(255, 255, 255, 0.6));
+    z-index: 0;
+    border-radius: 0 0 50% 50%;
+    transform: translateX(-50%) rotate(0deg);
+  }
+  
+  #hero::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 130%;
+    height: 96%;
+    background: #6b6868a7;
+    opacity: 0.4;
+    z-index: 0;
+    border-radius: 0 0 50% 50%;
+    transform: translateX(-50%) translateY(18px) rotate(2deg);
+  }
+  
+  #hero .carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  #hero h2 {
+    color: rgb(238, 125, 20);
+    margin-bottom: 30px;
+    font-size: 48px;
+    font-weight: 700;
+  }
+  
+  #hero p {
+    width: 80%;
+    animation-delay: 0.4s;
+    margin: 0 auto 30px auto;
+    color: #000000;
+  }
+  
+  #hero .carousel-control-prev,
+  #hero .carousel-control-next {
+    width: 10%;
+  }
+  
+  #hero .carousel-control-next-icon,
+  #hero .carousel-control-prev-icon {
+    background: none;
+    font-size: 48px;
+    line-height: 1;
+    width: auto;
+    height: auto;
+  }
+  
+  .btn{
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #000000;
+    background-color: #fff;
+    animation-delay: 0.8s;
+    border: 2px solid #000000;
+  }
+  
+  .btn:hover {
+    background: #000000;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  @media (min-width: 1024px) {
+    #hero p {
+      width: 60%;
+    }
+  
+    #hero .carousel-control-prev,
+    #hero .carousel-control-next {
+      width: 5%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #hero::after {
+      width: 180%;
+      height: 95%;
+      border-radius: 0 0 50% 50%;
+      transform: translateX(-50%) rotate(0deg);
+    }
+  
+    #hero::before {
+      top: 0;
+      width: 180%;
+      height: 94%;
+      border-radius: 0 0 50% 50%;
+      transform: translateX(-50%) translateY(20px) rotate(4deg);
+    }
+  }
+  
+  @media (max-width: 575px) {
+    #hero h2 {
+      font-size: 30px;
+    }
+  
+    #hero::after {
+      left: 40%;
+      top: 0;
+      width: 200%;
+      height: 95%;
+      border-radius: 0 0 50% 50%;
+      transform: translateX(-50%) rotate(0deg);
+    }
+  
+    #hero::before {
+      left: 50%;
+      top: 0;
+      width: 200%;
+      height: 94%;
+      border-radius: 0 0 50% 50%;
+      transform: translateX(-50%) translateY(20px) rotate(4deg);
+    }
+  }
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .slide-down {
+    animation: slideDown 2s ease-out forwards;
+  }
+
+  @keyframes fadeInFromRight {
+    from {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .fade-in-right {
+    animation: fadeInFromRight 2s ease-out forwards;
+  }
+
+  .fade-in-left {
+    animation: fadeInFromLeft 2.2s ease-out forwards;
+  }
+  

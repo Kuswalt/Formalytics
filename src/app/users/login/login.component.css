@@ -1,0 +1,66 @@
+body {
+    background-color: #ffffff00;
+    background-repeat: no-repeat;
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+}
+
+
+
+
+.card-header {
+    text-align: right;
+    border-bottom: none;
+    background-color: #ffffff00;
+    
+}
+
+
+.card-header a {
+    text-decoration: none;
+    color: #025464;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+.account-section {
+    margin-top: 1cm;
+    text-align: right;
+}
+
+
+.account-section a {
+    display: block;
+    color: #025464;
+}
+
+
+.new-account-link {
+    font-size: small;
+    text-decoration: none;
+}
+
+
+.logo {
+    width: 200px;
+    height: 200px;
+}
+
+
+.logo-img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5cm;
+}
+
+
+.btn {
+    background-color: #E57C23; /* Orange with transparency */
+    color: white;
+    border: none;
+}
+
+
+/* .btn:hover{
+    border: none;
+    height: 10px;
+} */

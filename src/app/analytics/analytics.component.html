@@ -1,0 +1,158 @@
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
+    <div class="col">
+      <div style="background-color: transparent; border: none;" class="sidebar">
+        <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/survey">Survey</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/analytics">Analytics</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/student-list">Student List</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col" id="Analysis-content1">
+  <div class="card" style="margin-top: 5rem; background-color: #a0deff17; outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+    <div class="card-header">
+      <p>Data Analysis</p>
+      <div class="create-survey">
+        <a type="button" class="btn" style="border-color: black;" routerLinkActive="active" (click)="saveAnalysis()">Save Analysis</a>
+      </div>
+    </div>
+   
+          <div style="background-color: #bdcfd817; padding-top: 10px; padding-bottom:10px" class="card">
+
+        
+        <div class="filter-controls" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0px; padding-bottom: 7px; align-items: center;">
+          <select class="form-control" [(ngModel)]="selectedCourse" (change)="applyFiltersAndUpdateCharts()">
+            <option value="ALL CATEGORIES">ALL CATEGORIES</option>
+            <option value="BSCS">BSCS</option>
+            <option value="BSIT">BSIT</option>
+            <option value="BSEMC">BSEMC</option>
+            <option value="ACT">ACT</option>
+          </select>
+          <select class="form-control" [(ngModel)]="selectedBatchYr" (change)="applyFiltersAndUpdateCharts()">
+            <option value="ALL YEARS">ALL YEARS</option>
+            <option value="2019">2019</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+            <option value="2025">2025</option>
+            <option value="2026">2026</option>
+          </select>
+          <select class="form-control" [(ngModel)]="selectedSex" (change)="applyFiltersAndUpdateCharts()">
+            <option value="ALL SEXES">ALL SEXES</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <select class="form-control" [(ngModel)]="selectedWorkStatus" (change)="applyFiltersAndUpdateCharts()">
+            <option value="ALL STATUSES">ALL STATUSES</option>
+            <option value="Employed">Employed</option>
+            <option value="Unemployed">Unemployed</option>
+            <option value="Seeking Employment">Seeking Employment</option>
+          </select>
+        </div>
+        <div id="respondentListCollapse" [class.collapsed]="isCollapsed" class="position-absolute w-100 bg-white p-3" style="z-index: 1;">
+        <div class="table-responsive"> 
+          <table class="table">
+            <thead>     
+              <tr>
+                <th scope="col">ID</th> <!-- Added column for ID -->
+                <th scope="col">Batch Yr.</th>
+                <th scope="col">Program</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Civil Status</th>
+                <th scope="col">Work Place</th> 
+                <th scope="col">Salary</th>
+                <th scope="col">Work Status</th>
+                <th scope="col">Occupation</th>  
+                <th scope="col">Course Related Job</th>  
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let StudentItem of filteredStudents">
+                <td>{{ StudentItem.id }}</td> <!-- Display the ID -->
+                <td>{{ StudentItem.batchYr }}</td>
+                <td>{{ StudentItem.program }}</td>
+                <td>{{ StudentItem.sex }}</td>
+                <td>{{ StudentItem.civil_Status }}</td>
+                <td>{{ StudentItem.work_place }}</td>
+                <td>{{ StudentItem.salary }}</td>
+                <td>{{ StudentItem.work_Status }}</td>
+                <td>{{ StudentItem.occupation }}</td>
+                <td>{{ StudentItem.firstjob_curriculum }}</td>
+                
+              </tr>          
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="chart-container">
+        <!-- Analytics CONTENT -->
+        <div class="pieChartContainer">
+          <div id="pieChart1"></div>
+        </div>
+        <div class="lineChartContainer">
+          <div id="lineChart1" class="chart"></div>
+        </div>
+      </div>
+      <div class="row1" style="padding-top: 7px; justify-content: center;">
+        <div class="col1">
+          <div class="smallpieChartContainer">
+            <div id="pieChart2"></div>
+          </div>
+          <div class="smallpieChartContainer">
+            <div id="pieChart3"></div>
+          </div>
+        </div>
+        <div class="col1">
+          <div class="chart-container">
+            <div class="HbarChartContainer">
+              <div id="barChart1" class="chart"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col"  id="Analysis-content2">
+    <div class="card" style="margin-top: .5rem; background-color: #a0deff17;outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+      <div style="background-color: #a0deff17; padding-top: 10px;" class="card-header">
+        <p style="color: #EE7214; font-size: 40px;" class="text-center">PIE CHART</p>
+      </div>
+      <div style="background-color: #bdcfd817; padding-top: 10px; padding-bottom:10px" class="card">
+        <div class="chart-container">
+          <div id="pieChart4"></div>
+          <div id="pieChart5"></div>
+          <div id="pieChart6"></div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="col" id="Analysis-content3">
+  <div class="card" style="margin-top: .5rem; background-color: #a0deff17;outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+    <div style="background-color: #a0deff17; padding-top: 10px;" class="card-header">
+      <p style="color: #EE7214; font-size: 40px;" class="text-center">BAR CHART</p>
+    </div>
+    <div style="background-color: #bdcfd817; padding-top: 10px; padding-bottom:10px" class="card">
+          <div class="chart-container" style="padding-bottom: 2rem;">
+            <div id="barChart2" ></div>
+          </div>
+      </div>
+    </div>
+</div>
+    
+    
+    
+    
+   

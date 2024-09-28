@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" [ngClass]="{'main-page-header': isMainPage()}">
+    <div class="container-fluid font-SmackBoom">
+        <a routerLinkActive="active" routerLink="/">
+            <img src="assets/img/formalytics-logo.png" class="img">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <h5 class="text-white" style="margin-top: 0.5cm;font-weight: bold;">FORMALYTICS</h5>
+            <ul style="padding-right: 1rem;" class="navbar-nav ms-auto mb-2 mb-lg-0" >
+                <ng-container *ngIf="!isLogin; else loggedIn">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="'/login'" style="color: #ee961c; font-size: 20px">
+                        Login
+                    </a>
+                </ng-container>
+                <ng-template #loggedIn>
+                    <a class="nav-link" [routerLink]="'/dashboard'" style="color: #ee961c; font-size: 20px">
+                        {{ username }}
+                    </a>
+                </ng-template>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="!isLogin ? '/register' : '/login'" routerLinkActive="active" (click)="isLogin && logout()" style="color:#ee961c; font-size: 20px;">
+                        {{ !isLogin ? 'Register' : 'Logout' }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,142 @@
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
+    <div class="col">
+      <div style="background-color: transparent; border: none;" class="sidebar">
+        <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/survey">Survey</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/analytics">Analytics</a>
+        <a class="nav-link active" routerLinkActive="active" routerLink="/student-list">Student List</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col">
+  <div class="card" style="margin-top: 5rem; background-color: #a0deff17;outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+    <div class="chart-container">
+      <div id="barChart1" class="chart"></div>
+      <div id="pieChart1" class="chart1"></div>
+    </div>
+  </div>
+  <div class="card pb-3" style="margin-top: 0.5rem; background-color: #a0deff17;outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+    <div style="background-color: #a0deff17; padding-top: 10px; padding-bottom:0px" class="card-header">
+      <div class="header-links">
+        <div class="header-link-container">
+          <a routerLink="/student-list" routerLinkActive="active-link" class="header-link student-list">Student List</a>
+        </div>
+        <span style="color: rgba(0, 0, 0, 0.418);">|</span>
+        <div class="header-link-container">
+          <a routerLink="/respondent-data" routerLinkActive="active-link" class="header-link">Respondent</a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="filter-controls">
+        <input type="text" placeholder="Search by Name..." [(ngModel)]="searchSurvey" (input)="applyFiltersAndUpdateCharts()">
+        <select [(ngModel)]="selectedCourse" (change)="applyFiltersAndUpdateCharts()">
+          <option value="ALL CATEGORIES">ALL CATEGORIES</option>
+          <option value="BSCS">BSCS</option>
+          <option value="BSIT">BSIT</option>
+          <option value="BSEMC">BSEMC</option>
+          <option value="ACT">ACT</option>
+        </select>
+        <select [(ngModel)]="selectedBatchYr" (change)="applyFiltersAndUpdateCharts()">
+          <option value="ALL YEARS">ALL YEARS</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+        </select>
+        <div class="button-group">
+          <a type="button" class="btn btn-primary" (click)="downloadExcel()">download Table</a>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Batch Yr.</th>
+              <th scope="col">Program</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Contact</th>
+              <th scope="col">Work Status</th>
+              <th scope="col">Actions
+                <a type="button" class="btn btn-primary" (click)="openArchiveModal()">Archive</a>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let StudentItem of filteredStudents">
+              <td>{{ StudentItem.id }}</td>
+              <td>{{ StudentItem.batchYr }}</td>
+              <td>{{ StudentItem.program }}</td>
+              <td>{{ StudentItem.name }}</td>
+              <td>{{ StudentItem.email }}</td>
+              <td>{{ StudentItem.contact_Num }}</td>
+              <td>{{ StudentItem.work_Status }}</td>
+              <td>
+                <button type="button" class="btn btn-primary" (click)="setUpdate(StudentItem)">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="setDelete(StudentItem)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Archive Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngClass]="{'show': showArchiveModal}" style="display: block;" *ngIf="showArchiveModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Archive Respondents</h5>
+        <button type="button" class="close" (click)="closeArchiveModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"><input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()"></th>
+                <th scope="col">ID</th>
+                <th scope="col">Batch Yr.</th>
+                <th scope="col">Program</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Work Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let respondent of filteredStudents">
+                <td><input type="checkbox" [(ngModel)]="respondent.selected"></td>
+                <td>{{ respondent.id }}</td>
+                <td>{{ respondent.batchYr }}</td>
+                <td>{{ respondent.program }}</td>
+                <td>{{ respondent.name }}</td>
+                <td>{{ respondent.email }}</td>
+                <td>{{ respondent.contact_Num }}</td>
+                <td>{{ respondent.work_Status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="archiveSelected()">Archive Selected</button>
+        <button type="button" class="btn btn-secondary" (click)="closeArchiveModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

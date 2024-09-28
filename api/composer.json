@@ -1,0 +1,6 @@
+{
+    "name": "chris/alumni",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

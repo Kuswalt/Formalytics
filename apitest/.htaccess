@@ -1,0 +1,22 @@
+# Redirect all requests to index.html for Angular
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Handle API requests
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^api/(.*)$ api/$1 [L]
+</IfModule>
+
+# Check login status and redirect accordingly
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_COOKIE} !isLoggedIn=true
+  RewriteRule ^(dashboard|analytics|student-list|respondent-data|survey)$ /login [L,NC,R=302]
+</IfModule>

@@ -1,0 +1,125 @@
+<div>
+<form>
+<div style="padding-top: 8rem;" class="container">
+    <div class="card" style="background-color: #a0deff17; outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+        <div class="card-header text text-center" style="background-color:transparent; padding-top: 15px; padding-bottom: 0px">
+            <p style="color:#EE7214; font-size: 40px;" id="surveyTitle">Alumni Study Tracer</p>
+        </div>
+    </div>
+    <div style="background-color: #a0deff17; outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; margin-top: 10px; padding-top:10px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)" class="card mt-3">
+        <div class="card-body">
+            <div style="padding-bottom: 0px" class="card-header">
+                <p style="color:#EE7214; font-size: 30px;" class="text-center">PROFILE</p>
+            </div>
+            <div class="mb-3">
+                <label style="color: #025464;" class="textmb-1" for="lastname">Last Name:</label>
+                <input type="text" class="form-control mb-3" name="lastname" id="respondentLastName" [(ngModel)]="respondentLastName" placeholder="Last Name">
+                
+                <label style="color: #025464;" class="textmb-1" for="firstname">First Name:</label>
+                <input type="text" class="form-control mb-3" name="firstname" id="respondentFirstName" [(ngModel)]="respondentFirstName" placeholder="First Name">
+                
+                <label style="color: #025464;" class="textmb-1" for="suffix">Suffix:</label>
+                <select class="form-control mb-3" id="respondentSuffix" [(ngModel)]="respondentSuffix">
+                    <option value="">None</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                </select>
+
+                <label style="color: #025464;" class="text mb-1" for="email">Email:</label>
+                <input type="text" class="form-control" name="respondentEmail" id="respondentEmail" [(ngModel)]="respondentEmail" placeholder="example@gmail.com">
+
+                <label style="color: #025464;" class="text mb-1" for="address">Address:</label>
+                <input type="text" class="form-control" name="respondentAddress" id="respondentAddress" [(ngModel)]="respondentAddress" placeholder="Address">
+
+                <label style="color: #025464;" class="text mb-1" for="contact">Contact No.</label>
+                <input type="text" class="form-control" name="respondentContact" id="respondentContact" [(ngModel)]="respondentContact" placeholder="0000-000-0000">
+
+                <label style="color: #025464;" class="textmb-1" for="civil">Civil Status:</label>
+                <select class="form-control mb-3" name="respondentCivil" id="respondentCivil" [(ngModel)]="respondentCivil">
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="In a Relationship">In a Relationship</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Widower">Widower</option>
+                    <option value="Seperated">Seperated</option>
+                </select>
+
+                <label style="color: #025464;" class="textmb-1" for="sex">Sex:</label>
+                <select class="form-control mb-3" name="respondentSex" id="respondentSex" [(ngModel)]="respondentSex">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <label style="color: #025464;" class="textmb-1" for="course">Graduated Course:</label>
+                <select class="form-control mb-3" name="respondentCourse" id="respondentCourse" [(ngModel)]="respondentCourse">
+                    <option value="BSCS">BSCS</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSEMC">BSEMC</option>
+                    <option value="ACT">ACT</option>
+                </select>
+
+                <label style="color: #025464;" class="textmb-1" for="year">Year Graduated</label>
+                <select class="form-control mb-3" name="respondentYrgrad" id="respondentYrgrad" [(ngModel)]="respondentYrgrad">
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div style="background-color: #a0deff17; outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; margin-top: 10px;margin-bottom: 8rem; padding-top:10px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)" class="card mt-3">
+        <div class="card-body">
+            <div style="padding-bottom: 0px" class="card-header">
+                <p style="color:#EE7214; font-size: 30px;" class="text-center">EMPLOYMENT DATA</p>
+            </div>
+            <div class="mb-3">
+                <label style="color: #025464;" class="textmb-1" for="work_Status">Work Status:</label>
+                <select class="form-control mb-3" name="respondentStatus" id="respondentStatus" [(ngModel)]="respondentStatus">
+                    <option value="Employed">Employed</option>
+                    <option value="Unemployed">Unemployed</option>
+                    <option value="Seeking Employment">Seeking Employment</option>
+                </select>
+
+                <label style="color: #025464;" class="text mb-1" for="occupation">Occupation:</label>
+                <input type="text" class="form-control" name="email" id="respondentOccupation" [(ngModel)]="respondentOccupation" placeholder="If none type N/A">
+
+                <label style="color: #025464;" class="textmb-1" for="work_place">Place of Work (n/a if Unemployed)</label>
+                <select class="form-control mb-3" name="respondentWorkplace" id="respondentWorkplace" [(ngModel)]="respondentWorkplace">
+                    <option value="Local">Local</option>
+                    <option value="Abroad">Abroad</option>
+                    <option value="n/a">n/a</option>
+                </select>
+
+                <label style="color: #025464;" class="textmb-1" for="Income">Monthly Income Range: (n/a if Unemployed)</label>
+                <select class="form-control mb-3" name="respondentIncome" id="respondentIncome" [(ngModel)]="respondentIncome">
+                    <option value="10000">Below 10K – 10,000</option>
+                    <option value="20000">10,001 - 20,000</option>
+                    <option value="30000">20,001 – 30,000</option>
+                    <option value="40000">30,001 – 40,000</option>
+                    <option value="50000">40,001 – 50,000</option>
+                    <option value="60000">50,001 – Above</option>
+                    <option value="0">n/a</option>
+                </select>
+
+                <label style="color: #025464;" class="textmb-1" for="curriculum">Was the curriculum you had in college relevant to your first job? (n/a if Unemployed)</label>
+                <select class="form-control mb-3" name="respondentWorkrelevant" id="respondentWorkrelevant" [(ngModel)]="respondentWorkrelevant">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="n/a">n/a</option>
+                </select>
+            </div>
+            <div class="div-buttons" style="text-align: center;">
+                <button type="submit" class="btn button-option" (click)="save()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</div>

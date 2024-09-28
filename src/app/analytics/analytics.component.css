@@ -1,0 +1,280 @@
+/* Initially hide sidebar */
+.sidebar-toggle:checked + .col-lg-3 .sidebar {
+  display: none;
+}
+
+ 
+/* Sidebar position and size for larger screens */
+@media (min-width: 992px) {
+  .sidebar {
+    position: fixed;
+    overflow: auto;
+    top: 6.5rem;
+    left: 0;
+    height: 100%;
+    width: 12%; /* Adjust width as needed */
+    max-width: 250px; /* Set maximum width */
+    border-right: none; /* Updated border color */
+    display: block !important;
+    background-color: #a0deff17;
+  }
+  .options-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .row1 {
+    display: flex; /* Use flexbox for horizontal alignment */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: center; /* Center the content horizontally */
+    gap: 1rem; /* Add gap between columns if needed */
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .col {
+    /* Adjust the size and position of the col class */
+    padding-left: 9rem; /* Example padding adjustment */
+    /* You can edit the col class here */
+  }
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    margin-bottom: 10px; /* Add margin between sidebar links */
+    border-radius: 0px 10px 10px 0px; /* Rounded border on right side */
+    font-size: 18px;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #EE7214;
+    color: white;
+    border-radius:0px 15px 15px 0px; /* Rounded border on right side */
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #E57C23; /* Updated hover color */
+  
+    color: white;
+    border-radius: 0px 15px 15px 0px; /* Rounded border on right side */
+  }
+}
+
+/* Toggle label style */
+.sidebar-toggle-label {
+  display: none;
+  color: #000;
+  padding: 16px;
+  cursor: pointer;
+}
+  
+  /* Show toggle label for mobile */
+  @media (max-width: 991px) {
+    .sidebar {
+      overflow-y: hidden;
+      text-align: center;
+      /* Adjust the position and size of the sidebar here */
+      position: relative;
+      top: 5rem; /* Example adjustment */
+      left: -55px; /* Example adjustment */
+      width: 121.5%; /* Adjust width as needed */
+      max-width: 200%; /* Set maximum width */
+      z-index: 1;
+      background-color: #a0deff17;
+    }
+    
+    .row1 {
+     
+      justify-content: center; /* Center the content horizontally */
+      gap: 1rem; /* Add gap between columns if needed */
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .options-header {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+  
+    }
+    .header-survey {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+    .btn-survey {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      margin-bottom: 5px;
+  
+    }
+    .create-survey {
+      margin-top: 0.3cm;
+    }
+     /* Sidebar links */
+ .sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  margin-bottom: 10px; /* Add margin between sidebar links */
+  border-radius: 10px; /* Rounded border on right side */
+  font-size: 18px;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #EE7214;
+  color: white;
+  border-radius:15px; /* Rounded border on right side */
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #E57C23; /* Updated hover color */
+
+  color: white;
+  border-radius: 15px; /* Rounded border on right side */
+}
+  }
+
+  .create-button:hover {
+    background-color: white;
+    color: #E57C23;
+  }
+  .header-styles {
+    text-align: center;
+  }
+  
+  .disabled-link {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .create-survey{
+    padding-left: 0;
+    padding-top: 0;
+    margin-right: 1rem;
+  }
+  .btn1{
+    padding: 10px;
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0;
+  
+  }
+  .btn1:hover{
+    background-color: rgba(243, 161, 10, 0.512);
+  }
+  
+  .chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow:hidden; /* Ensures the corners of the Plotly chart also appear rounded */
+  }
+
+  .chart {
+    flex: 1;
+    
+  }
+  .grid-container1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* Adjust the gap between the charts as needed */
+  }
+  
+  .chart1 {
+    width: 100%;
+    height: 350px; /* Adjust the height as needed */
+  }
+  .HbarChartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   border-radius: 20px;
+    overflow:hidden; /* Ensures the corners of the Plotly chart also appear rounded */
+    background-color: #ffffff;
+  
+    width: 800px;
+  }
+  .lineChartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px; 
+    border-bottom-right-radius: 20px; 
+    overflow:hidden; /* Ensures the corners of the Plotly chart also appear rounded */
+    background-color: #ffffff;
+
+    width: 770px;
+  }
+  .pieChartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-top-left-radius: 20px; 
+    border-bottom-left-radius: 20px; 
+    overflow :hidden; /* Ensures the corners of the Plotly chart also appear rounded */
+    background-color: #ffffff;
+
+    width: 370px;
+  }
+  .collapsed {
+    display: none;
+  }
+  .position-absolute {
+    position: absolute;
+    top: 5rem;
+    left: 0;
+    right: 0;
+  }
+  .btn2{
+    border-radius: 7px;
+    font-size: 12px;
+    padding: 6px;
+  
+  }
+  .smallpieChartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 20px;
+    overflow :hidden; /* Ensures the corners of the Plotly chart also appear rounded */
+    background-color: #ffffff;
+    height: 200px;
+    width: 300px;
+  }
+  .card {
+    margin-bottom: 10px;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: center; /* Center the text */
+    align-items: center;
+    background-color: #a0deff17;
+    padding-top: 10px;
+    position: relative; /* Required for absolute positioning of the button */
+  }
+  
+  .card-header p {
+    margin: 0;
+    color: #EE7214;
+    font-size: 40px;
+  }
+  
+  .create-survey {
+    position: absolute;
+    right: 1rem; /* Adjust as needed */
+  }

@@ -1,0 +1,476 @@
+/* Initially hide sidebar */
+.sidebar-toggle:checked + .col-lg-3 .sidebar {
+  display: none;
+}
+
+
+/* Sidebar position and size for larger screens */
+@media (min-width: 992px) {
+  .sidebar {
+    position: fixed;
+    overflow: auto;
+    top: 6.5rem;
+    left: 0;
+    height: 100%;
+    width: 12%; /* Adjust width as needed */
+    max-width: 250px; /* Set maximum width */
+    border-right: none; /* Updated border color */
+    display: block !important;
+    background-color: #a0deff17;
+  }
+   /* Sidebar links */
+ .sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  margin-bottom: 10px; /* Add margin between sidebar links */
+  border-radius: 0px 10px 10px 0px; /* Rounded border on right side */
+  font-size: 18px;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #EE7214;
+  color: white;
+  border-radius:0px 15px 15px 0px; /* Rounded border on right side */
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #E57C23; /* Updated hover color */
+
+  color: white;
+  border-radius: 0px 15px 15px 0px; /* Rounded border on right side */
+}
+}
+
+/* Toggle label style */
+.sidebar-toggle-label {
+  display: none;
+  color: #000;
+  padding: 16px;
+  cursor: pointer;
+}
+
+/* Show toggle label for mobile */
+@media (max-width: 991px) {
+  .sidebar {
+    overflow-y: hidden;
+    text-align: center;
+    /* Adjust the position and size of the sidebar here */
+    position: relative;
+    top: 5rem; /* Example adjustment */
+    left: -55px; /* Example adjustment */
+    width: 121.5%; /* Adjust width as needed */
+    max-width: 200%; /* Set maximum width */
+    z-index: 1;
+    background-color: #a0deff17;
+  }
+
+  /* Add your custom styles for the navbar here */
+  /* This section is specifically for screens smaller than 991px */
+  .navbar {
+    /* Adjust the size and position of the navbar */
+    height: 60px; /* Example height adjustment */
+    padding: 10px; /* Example padding adjustment */
+    background-color: #ffffff; /* Example background color adjustment */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Example box shadow adjustment */
+    /* You can edit the navbar size and position here */
+  }
+
+  /* Add your custom styles for the container behind the charts here */
+  /* This section is specifically for screens smaller than 991px */
+  .chart-container {
+    flex-direction: column; /* Stack charts vertically */
+    padding: 20px; /* Example padding adjustment */
+    background-color: #ffffff; /* Example background color adjustment */
+    border-radius: 10px; /* Example border radius adjustment */
+    overflow: hidden; /* Ensure overflow is hidden */
+  }
+
+  .chart {
+    min-width: 100%; /* Make charts take full width */
+    margin-bottom: 1rem; /* Add space between charts */
+    
+  }
+   /* Sidebar links */
+ .sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  margin-bottom: 10px; /* Add margin between sidebar links */
+  border-radius: 10px ; /* Rounded border on right side */
+  font-size: 18px;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #EE7214;
+  color: white;
+  border-radius: 15px ; /* Rounded border on right side */
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #E57C23; /* Updated hover color */
+
+  color: white;
+  border-radius: 15px /* Rounded border on right side */
+}
+}
+
+/* Additional CSS for mobile screens */
+@media (max-width: 576px) {
+  .chart-container {
+    flex-direction: column; /* Stack charts vertically */
+    margin-left: 0; /* Remove left margin */
+    overflow: hidden; /* Ensure overflow is hidden */
+  }
+
+  .chart {
+    min-width: 100%; /* Make charts take full width */
+    margin-bottom: 1rem; /* Add space between charts */
+  }
+
+  /* Add your custom styles for the cards and background here */
+  /* This section is specifically for screens smaller than 576px */
+  .chart-card {
+    /* Adjust the position of the cards */
+    margin-left: 0; /* Align to the left */
+    margin-right: auto; /* Center within the parent */
+    background-color: #a0deff17; /* Adjust the background color */
+    border-radius: 20px; /* Adjust the border radius */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2); /* Adjust the box shadow */
+    /* You can edit the card position and background here */
+  }
+
+  /* Add your custom styles for the container behind the charts here */
+  /* This section is specifically for screens smaller than 576px */
+  .chart-container {
+    /* Adjust the size and position of the container behind the charts */
+    padding: 20px; /* Example padding adjustment */
+    background-color: #ffffff; /* Example background color adjustment */
+    border-radius: 10px; /* Example border radius adjustment */
+    /* You can edit the container behind the charts here */
+    overflow: hidden; /* Ensure overflow is hidden */
+  }
+   /* Sidebar links */
+ .sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  margin-bottom: 10px; /* Add margin between sidebar links */
+  border-radius: 10px ; /* Rounded border on right side */
+  font-size: 18px;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #EE7214;
+  color: white;
+  border-radius: 15px ; /* Rounded border on right side */
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #E57C23; /* Updated hover color */
+
+  color: white;
+  border-radius: 15px /* Rounded border on right side */
+}
+}
+
+/* Desktop view styles */
+/* Add your custom styles for the desktop view here */
+/* This section is specifically for screens larger than 991px */
+@media (min-width: 992px) {
+  .chart-container {
+    /* Adjust the size and position of the container behind the charts */
+    padding: 30px; /* Example padding adjustment */
+    background-color: #ffffff; /* Example background color adjustment */
+    border-radius: 15px; /* Example border radius adjustment */
+    /* You can edit the container behind the charts here */
+    overflow: hidden; /* Ensure overflow is hidden */
+  }
+
+  /* Add your custom styles for the col class here */
+  /* This section is specifically for screens larger than 991px */
+  .col {
+    /* Adjust the size and position of the col class */
+    padding-left: 9rem; /* Example padding adjustment */
+    /* You can edit the col class here */
+  }
+}
+
+
+/* Custom styling for "Create" button */
+.create-button {
+  background-color: #E57C23 !important;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.create-button:hover {
+  background-color: white;
+  color: #E57C23;
+}
+
+.header-styles {
+  text-align: center;
+}
+
+
+.select-category label {
+  display: inline-block;
+  width: 180px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.select-category select {
+  display: inline-block;
+  width: 300px;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.surveys {
+  border: 1px solid gray;
+  margin-bottom: 1cm;
+}
+
+
+.create-at {
+  font-size: smaller;
+  margin-top: -10px;
+}
+
+.survey-description {
+  text-align: justify;
+}
+
+.survey-options {
+  text-align: right;
+}
+
+.btn-survey {
+  margin-left: 10px;
+}
+
+
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.create-survey {
+  padding-left: 3.3rem;
+  padding-top: .5rem;
+}
+
+.btn1 {
+  padding: 10px;
+  margin-top: -0.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: -3.3rem;
+}
+
+.btn1:hover {
+  background-color: rgba(243, 161, 10, 0.512);
+}
+
+.dashboard {
+  display: flex;
+  position: relative;
+  top: 90px;
+  left: 100px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #ffffff2f;
+  padding-bottom: 10px;
+}
+
+.dashboard1 {
+  display: flex;
+  position: relative;
+  top: 75px;
+  left: 100px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  padding-bottom: 10px;
+}
+
+.stats, .charts, .progress-cards {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.stat-card, .chart-card, .progress-card {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  text-align: center;
+}
+
+.stat-icon {
+  font-size: 2rem;
+}
+
+.progress-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #4caf50 calc(var(--progress) * 1%),
+    #ddd calc(var(--progress) * 1%)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto;
+}
+
+/* Desktop view */
+@media (min-width: 768px) {
+  .stat-card, .chart-card, .progress-card {
+    width: 20%;
+  }
+
+  .chart-card {
+    width: 30%;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 767px) {
+  .stats, .charts, .progress-cards {
+    position: relative;
+    right: 90px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-card, .chart-card, .progress-card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .progress-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 1.2rem;
+  }
+}
+
+.navbar .print-button {
+  margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.navbar .print-button button {
+  position: relative;
+  left: 25px;
+  border-radius: 30px;
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .print-button button:hover {
+  background-color: rgba(243, 161, 10, 0.512);
+}
+
+.collapsed {
+  display: none;
+}
+
+.position-absolute {
+  position: absolute;
+  top: 5rem;
+  left: 0;
+  right: 0;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden; /* Ensure overflow is hidden */
+}
+
+
+/* src/app/dashboard/dashboard.component.css */
+@media print {
+  .no-print, .header, .footer {
+    display: none !important;
+  }
+
+  .container-fluid {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .col {
+    margin: 0 auto;
+    float: none;
+    width: 100%;
+  }
+
+  .card {
+    margin: 0 auto;
+    float: none;
+    width: 100%;
+  }
+
+  .card-header, .card-body2, .paragraph {
+    text-align: center;
+    margin: 0 auto;
+    float: none;
+    width: 100%;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    margin: 10px;
+    width: 200px;
+  }
+
+  .chart-container {
+    margin: 0 auto;
+    float: none;
+    width: 100%;
+    
+  }
+
+  .HbarChartContainer {
+    margin: 0 auto;
+    float: none;
+    width: 100%;
+  }
+}

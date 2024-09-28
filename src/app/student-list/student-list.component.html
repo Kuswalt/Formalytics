@@ -1,0 +1,328 @@
+<div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle">
+    <div class="col">
+      <div style="background-color: transparent; border: none;" class="sidebar">
+        <a class="nav-link" routerLinkActive="active" routerLink="/dashboard">Dashboard</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/survey">Survey</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/analytics">Analytics</a>
+        <a class="nav-link" routerLinkActive="active" routerLink="/student-list">Student List</a>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="col">
+      <div class="card" style="margin-top: 5rem; background-color: #a0deff17;outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+        <div class="chart-container">
+          <div id="pieChart1" class="chart"></div>
+          <div id="barChart1" class="chart"></div>
+        </div>
+      </div>
+      <!-- New Containers -->
+      <div class="row mt-2">
+        <div class="col-md-3">
+          <div class="card">
+            <div style="background-color: #a0deff17; padding-top: 10px;  align-items: center;" class="card">
+              <h5 class="card-title" style=" font-weight: bolder;">Respondents</h5>
+              <p class="count" style="color: #EE7214; font-size: 20px;">+{{ filteredRespondentCount }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="card">
+            <div style="background-color: #a0deff17; padding-top: 10px; padding-bottom:10px" class="card">
+              <div class="container">
+                <h5 class="card-title" style="font-weight: bolder; padding-bottom: 4px;">Respondent List</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn" style="border-color: black;" type="button" (click)="archiveData()" >
+                    Archive Data ⬇
+                  </button>
+                </div>
+              </div>    
+             
+
+                <!-- Change the collapse div to be hidden by default and use absolute positioning -->
+                <div id="respondentListCollapse" [class.collapsed]="isCollapsed" class="position-absolute w-100 bg-white p-3" style="z-index: 1;">
+                  <select class="form-control mb-3" [(ngModel)]="selectedBatchYr" (change)="applyFiltersAndUpdateCharts()">
+                    <option value="ALL YEARS">ALL YEARS</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                  </select>
+                  <!-- Filter Button -->
+                  <div class="table-responsive"> 
+                    <table class="table">
+                      <thead>     
+                        <tr>
+                          <th scope="col">Batch Yr.</th>
+                          <th scope="col">Program</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">Email</th> 
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let StudentItem of filteredrespondedStudents">
+                          <td>{{ StudentItem.batchYr }}</td>
+                          <td>{{ StudentItem.program }}</td>
+                          <td>{{ StudentItem.name }}</td>
+                          <td>{{ StudentItem.email }}</td>
+                        </tr>          
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card pb-3" style="margin-top: 0.5rem; background-color: #a0deff17;outline: 6px solid rgba(255, 255, 255, 0); border: none; border-radius: 20px; box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2)">
+        <div style="background-color: #a0deff17; padding-top: 10px; padding-bottom:0px" class="card-header">
+          <div class="header-links">
+            <div class="header-link-container">
+              <a routerLink="/student-list" routerLinkActive="active-link" class="header-link">Student List</a>
+            </div>
+            <span style="color: rgba(0, 0, 0, 0.418);">|</span>
+            <div class="header-link-container">
+              <a routerLink="/respondent-data" routerLinkActive="active-link" class="header-link respondent-link">Respondent</a>
+            </div>
+          </div>
+        </div>
+        <div class="container mt-4">
+          <!-- Add a flex container for the filters -->
+          <div class="filter-container">
+            <!-- Add (input) event binding to the filter input field -->
+            <input type="text" [(ngModel)]="searchSurvey" (input)="applyFiltersAndUpdateCharts()" placeholder="Search by name" class="search-input" />
+            <!-- Dropdown for selecting the course -->
+            <select class="form-control course-select" [(ngModel)]="selectedCourse" (change)="applyFiltersAndUpdateCharts()">
+              <option value="ALL CATEGORIES">ALL CATEGORIES</option>
+              <option value="BSCS">BSCS</option>
+              <option value="BSIT">BSIT</option>
+              <option value="BSEMC">BSEMC</option>
+              <option value="ACT">ACT</option>
+            </select>
+            <button class="btn" style=" border-color: black;" routerLinkActive="active" (click)="showAddModal = true">Import/ADD</button>
+                  
+          </div>
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading" class="loading-spinner">
+            <div class="spinner"></div>
+          </div>
+          <!-- Data Table -->
+          <div *ngIf="!isLoading" class="table-responsive"> 
+            <table class="table">
+              <thead>     
+                <tr>
+                  <th scope="col">Course</th>
+                  <th scope="col">Name</th>
+                  <th scope="col" class="email-col">Email</th> 
+                  <th scope="col">Contact</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Email Sent Time</th>
+                  <th scope="col">Actions
+                    <button type="button" class="btn btn-danger btn-sm" (click)="showConfirmModal = true">Mail All</button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let student of filteredStudents" class="student-row">
+                  <td>{{ student.Course }}</td>
+                  <td>{{ student.student_name }}</td>
+                  <td>{{ student.email }}</td>
+                  <td>{{ student.contact }}</td>
+                  <td [ngClass]="{'text-success': getStatus(student) === 'Responded', 'text-warning': getStatus(student) === 'Pending'}">
+                    {{ getStatus(student) }}
+                  </td> 
+                  <td>{{ student.emailSentTime ? (student.emailSentTime | date:'medium') : 'Not Sent' }}</td>
+                  <td>
+                    <div class="btn-group align-items-center" role="group" aria-label="Basic example" style="height: 100%; display: flex; align-items: center; justify-content: flex-end;">
+                      <button type="button" class="btn btn-danger btn-sm" (click)="editStudent(student)">Edit</button>  
+                      <button type="button" class="btn btn-danger btn-sm" (click)="deleteStudent(student)">Delete</button>   
+                      <button type="button" class="btn btn-danger btn-sm" (click)="sendEmail(student)">Mail</button>
+                    </div>
+                  </td>
+                </tr>          
+              </tbody>
+            </table>
+          </div>
+        </div>
+            
+          </div>
+         
+          
+      </div>
+
+ 
+
+<!-- Edit Student Modal -->
+<div class="modal fade show" *ngIf="showEditModal" style="display: block; background-color: rgba(0,0,0,0.5);" (click)="closeModal($event)">
+  <div class="modal-dialog" role="document" style="position: fixed; top: 20px; right: 20px; width: 300px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Student</h5>
+        <button type="button" class="close" (click)="showEditModal = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="studentName">Name</label>
+            <input type="text" class="form-control" id="studentName" [(ngModel)]="selectedStudent.student_name" name="student_name" required>
+          </div>
+          <div class="form-group">
+            <label for="studentEmail">Email</label>
+            <input type="email" class="form-control" id="studentEmail" [(ngModel)]="selectedStudent.email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="studentCourse">Course</label>
+            <input type="text" class="form-control" id="studentCourse" [(ngModel)]="selectedStudent.Course" name="Course" required>
+          </div>
+          <div class="form-group">
+            <label for="studentContact">Contact</label>
+            <input type="text" class="form-control" id="studentContact" [(ngModel)]="selectedStudent.contact" name="contact" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showEditModal = false">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateStudent()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Student Modal -->
+<div class="modal1 modal1-backdrop" *ngIf="showAddModal" style="display: block; background-color: rgba(0,0,0,0.5);" (click)="closeAddModal($event)">
+  <div class="modal1-dialog modal1-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal1-content">
+      <div class="modal1-header modal1-header-aligned"> <!-- Added class for alignment -->
+        <h5 class="modal1-title">Add New Students</h5>
+        <button type="button" class="close" (click)="closeAddModal($event)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal1-body" style="background-color: #f8f9fa;"> <!-- Added background color -->
+        <form>
+          <div *ngFor="let student of newStudents; let i = index">
+            <div class="form-group">
+              <label for="newStudentName{{i}}">Name</label>
+              <input type="text" class="form-control" id="newStudentName{{i}}" [(ngModel)]="student.student_name" name="student_name{{i}}" required>
+            </div>
+            <div class="form-group">
+              <label for="newStudentEmail{{i}}">Email</label>
+              <input type="email" class="form-control" id="newStudentEmail{{i}}" [(ngModel)]="student.email" name="email{{i}}" required>
+            </div>
+            <div class="form-group">
+              <label for="newStudentCourse{{i}}">Course</label>
+              <input type="text" class="form-control" id="newStudentCourse{{i}}" [(ngModel)]="student.Course" name="Course{{i}}" required>
+            </div>
+            <div class="form-group">
+              <label for="newStudentContact{{i}}">Contact</label>
+              <input type="text" class="form-control" id="newStudentContact{{i}}" [(ngModel)]="student.contact" name="contact{{i}}" required>
+            </div>
+            <button type="button" class="btn btn-danger" (click)="removeStudentField(i)">Remove</button>
+            <hr>
+          </div>
+          <button type="button" class="btn btn-secondary" (click)="addNewStudentField()">Add Another Student</button>
+        </form>
+        <br>
+      </div>
+      <div class="modal1-footer modal1-footer-aligned"> <!-- Added class for alignment -->
+        <input type="file" (change)="importfile($event)" accept=".xlsx, .xls" />
+        <button type="button" class="btn btn-primary" (click)="addStudents()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Confirmation Modal -->
+<div class="modal fade show" *ngIf="showConfirmModal" style="display: block; background-color: rgba(0,0,0,0.5);" (click)="closeConfirmModal($event)">
+  <div class="modal-dialog" role="document" style="position: fixed; top: 20px; right: 20px; width: 300px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Action</h5>
+        <button type="button" class="close" (click)="showConfirmModal = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to send an email to all students in the list?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showConfirmModal = false">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="confirmSendEmailtoAll()">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Archive Data Modal -->
+<div class="modal fade show" *ngIf="showArchiveModal" style="display: block; background-color: rgba(0,0,0,0.5);" (click)="closeArchiveModal($event)">
+  <div class="modal-dialog" role="document" style="position: fixed; top: 20px; right: 20px; width: 300px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Select Students to Archive</h5>
+        <button type="button" class="close" (click)="showArchiveModal = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+        <form>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()" name="selectAll">
+            <label class="form-check-label">
+              Select All
+            </label>
+          </div>
+          <div *ngFor="let student of filteredStudents; let i = index">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="student.selected" name="student{{i}}">
+              <label class="form-check-label" for="student{{i}}">
+                {{ student.student_name }} ({{ student.Course }})
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showArchiveModal = false">Close</button>
+        <button type="button" class="btn btn-primary" (click)="confirmArchive()">Archive Selected</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Archived Data Modal -->
+<div class="modal fade show" *ngIf="showArchivedDataModal" style="display: block; background-color: rgba(0,0,0,0.5);" (click)="closeArchivedDataModal($event)">
+  <div class="modal-dialog" role="document" style="position: fixed; top: 20px; right: 20px; width: 300px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Archived Students</h5>
+        <button type="button" class="close" (click)="showArchivedDataModal = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+        <form>
+          <div *ngFor="let student of archivedStudents; let i = index">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="student.selected" name="archivedStudent{{i}}">
+              <label class="form-check-label" for="archivedStudent{{i}}">
+                {{ student.student_name }} ({{ student.Course }})
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="showArchivedDataModal = false">Close</button>
+        <button type="button" class="btn btn-primary" (click)="restoreArchived()">Restore Selected</button>
+      </div>
+    </div>
+  </div>
+</div>

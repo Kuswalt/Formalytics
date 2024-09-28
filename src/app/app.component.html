@@ -1,0 +1,11 @@
+<ng-container *ngIf="!hideHeader">
+  <app-header></app-header>
+</ng-container>
+
+<div class="container container-body">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-container *ngIf="!hideFooter">
+  <app-footer></app-footer>
+</ng-container>

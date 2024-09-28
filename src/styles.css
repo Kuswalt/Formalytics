@@ -1,0 +1,43 @@
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+html{
+    position: relative;
+    min-height: 100%;
+   
+}
+
+
+body{
+    margin-bottom: 60px;
+    background-color: #c0d6e81e;
+    /* background-image: url(assets/img/12.png); */
+    background-repeat: no-repeat;
+    /* background: radial-gradient(circle, rgba(140,101,36,1) 70%, rgba(161,88,26,1) 100%); */
+    /*background-position: center;*/
+    font-family: 'Karla', sans-serif;
+}
+
+
+
+
+.justify-text{
+    text-align: justify;
+}
+
+
+.right-text{
+    text-align: right;
+}
+
+
+.button-option{
+    background-color: #eeeee4;
+    border: 1px solid #000000;
+}
+
+
+.btn:hover{
+    background-color: burlywood;
+    border: 1px solid #000000;
+}

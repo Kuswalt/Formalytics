@@ -1,0 +1,17 @@
+{
+    "name": "vendor/autoload",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Autoload\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hizzCarlo",
+            "email": "fitnezzgo@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6" 
+    }
+}
